@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="pixabayImage"
+            type="com.giussepr.sunbelt.model.PixabayImage" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/small_margin">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageViewImage"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                custom:pixabayImage="@{pixabayImage.webFormatUrl}"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <ImageView
+                android:id="@+id/imageViewAvatar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/small_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageViewImage"
+                custom:avatar="@{pixabayImage.userImageUrl}"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/textViewUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:text="@{pixabayImage.user}"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewUserId"
+                app:layout_constraintStart_toEndOf="@id/imageViewAvatar"
+                app:layout_constraintTop_toTopOf="@id/imageViewAvatar"
+                tools:text="@tools:sample/full_names" />
+
+            <TextView
+                android:id="@+id/textViewUserId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(pixabayImage.userId)}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/imageViewAvatar"
+                app:layout_constraintStart_toStartOf="@id/textViewUser"
+                app:layout_constraintTop_toBottomOf="@+id/textViewUser"
+                tools:text="18371568" />
+
+            <!--region Views-->
+            <TextView
+                android:id="@+id/textViewViews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:text="@{String.valueOf(pixabayImage.views)}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="50" />
+
+            <ImageView
+                android:id="@+id/imageViewViews"
+                style="@style/ImageViewPixabayStats"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:src="@drawable/ic_views"
+                app:layout_constraintBottom_toBottomOf="@id/textViewViews"
+                app:layout_constraintEnd_toStartOf="@id/textViewViews"
+                app:layout_constraintTop_toTopOf="@id/textViewViews" />
+            <!--endregion-->
+
+            <!--region Favorites-->
+            <TextView
+                android:id="@+id/textViewFavorites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:text="@{String.valueOf(pixabayImage.favorites)}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/imageViewViews"
+                tools:text="50" />
+
+            <ImageView
+                android:id="@+id/imageViewFavorites"
+                style="@style/ImageViewPixabayStats"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:src="@drawable/ic_favorite"
+                app:layout_constraintBottom_toBottomOf="@id/textViewFavorites"
+                app:layout_constraintEnd_toStartOf="@id/textViewFavorites"
+                app:layout_constraintTop_toTopOf="@id/textViewFavorites" />
+            <!--endregion-->
+
+            <!--region Views-->
+            <TextView
+                android:id="@+id/textViewLikes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:layout_marginBottom="@dimen/small_margin"
+                android:text="@{String.valueOf(pixabayImage.likes)}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/imageViewFavorites"
+                tools:text="50" />
+
+            <ImageView
+                android:id="@+id/imageViewLikes"
+                style="@style/ImageViewPixabayStats"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:src="@drawable/ic_like"
+                app:layout_constraintBottom_toBottomOf="@id/textViewLikes"
+                app:layout_constraintEnd_toStartOf="@id/textViewLikes"
+                app:layout_constraintTop_toTopOf="@id/textViewLikes" />
+            <!--endregion-->
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

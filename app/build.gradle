@@ -35,12 +35,14 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://arotapp.ceindetec.org.co/api/\"")
+            buildConfigField("String", "BASE_URL", "\"https://pixabay.com/api/\"")
+            buildConfigField("String", "PIXABAY_API_KEY", "\"4792335-cd8af72a09ac90bceb8bb8c63\"")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", "\"https://arotapp.ceindetec.org.co/api/\"")
+            buildConfigField("String", "BASE_URL", "\"https://pixabay.com/api/\"")
+            buildConfigField("String", "PIXABAY_API_KEY", "\"4792335-cd8af72a09ac90bceb8bb8c63\"")
         }
     }
 }
@@ -97,5 +99,9 @@ dependencies {
 
     //Timber Logging
     implementation "com.jakewharton.timber:timber:$timber_version"
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
 }
