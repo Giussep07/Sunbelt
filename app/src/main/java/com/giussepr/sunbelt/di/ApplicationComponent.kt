@@ -4,6 +4,7 @@ import android.app.Application
 import com.giussepr.sunbelt.app.SunbeltApp
 import com.giussepr.sunbelt.di.modules.HomeModule
 import com.giussepr.sunbelt.di.modules.NetworkModule
+import com.giussepr.sunbelt.di.modules.RoomModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -18,7 +19,8 @@ import javax.inject.Singleton
         FragmentBindingModule::class,
         ViewModelModule::class,
         NetworkModule::class,
-        HomeModule::class
+        HomeModule::class,
+        RoomModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<SunbeltApp> {

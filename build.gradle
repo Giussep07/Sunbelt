@@ -11,6 +11,8 @@ buildscript {
         stetho_version = "1.5.1"
         timber_version = "4.7.1"
         moshi_version = "1.9.3"
+        paging_version = "3.0.0-alpha07"
+        room_version = "2.2.5"
     }
     repositories {
         google()

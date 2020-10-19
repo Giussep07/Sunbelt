@@ -1,6 +1,6 @@
 package com.giussepr.sunbelt.dto
 
-import com.giussepr.sunbelt.model.PixabayImage
+import com.giussepr.sunbelt.db.entity.PixabayImage
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

@@ -4,36 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.giussepr.sunbelt.dto.PixabayImageResDTO
-import com.giussepr.sunbelt.model.PixabayImage
-import kotlinx.coroutines.launch
-import timber.log.Timber
+import androidx.paging.*
+import com.giussepr.sunbelt.db.entity.PixabayImage
+import com.giussepr.sunbelt.ui.home.dataSource.PixabayImageDataSource
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private val repository: IContractHome.Repository) :
     ViewModel(), IContractHome.ViewModel {
+    private val pageSize: Int = 20
 
-    private val _pixabayImages = MutableLiveData<List<PixabayImage>>()
-    val pixabayImages: LiveData<List<PixabayImage>>
-        get() = _pixabayImages
-
-    override fun getImages() {
-        viewModelScope.launch {
-            val response = repository.getImages(
-                page = 1,
-                perPage = 20,
-                language = "es"
-            )
-
-            if (response.isSuccessful) {
-                response.body()?.let { responseBody ->
-                    _pixabayImages.value =
-                        PixabayImageResDTO.toListPixabayImageModel(responseBody.hits)
-                }
-            } else {
-                Timber.e(response.errorBody().toString())
-            }
-
-        }
+    val images: Flow<PagingData<PixabayImage>> = Pager(PagingConfig(pageSize = pageSize)) {
+        PixabayImageDataSource(repository)
     }
+        .flow
+        .cachedIn(viewModelScope)
 }

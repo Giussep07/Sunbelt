@@ -8,7 +8,7 @@
 
         <variable
             name="pixabayImage"
-            type="com.giussepr.sunbelt.model.PixabayImage" />
+            type="com.giussepr.sunbelt.db.entity.PixabayImage" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

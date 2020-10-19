@@ -2,20 +2,20 @@ package com.giussepr.sunbelt.ui.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.giussepr.sunbelt.databinding.HomeFragmentItemBinding
-import com.giussepr.sunbelt.model.PixabayImage
+import com.giussepr.sunbelt.db.entity.PixabayImage
 
 class PixabayImageAdapter :
-    ListAdapter<PixabayImage, PixabayImageAdapter.PixabayImageViewHolder>(PixabayImage.DiffCallback) {
+    PagingDataAdapter<PixabayImage, PixabayImageAdapter.PixabayImageViewHolder>(PixabayImage.DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PixabayImageViewHolder {
         return PixabayImageViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: PixabayImageViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position)!!)
     }
 
     class PixabayImageViewHolder constructor(private val binding: HomeFragmentItemBinding) :
