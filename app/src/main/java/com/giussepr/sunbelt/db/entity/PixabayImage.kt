@@ -1,10 +1,13 @@
 package com.giussepr.sunbelt.db.entity
 
+import android.os.Parcelable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "PixabayImages")
 data class PixabayImage(
     @PrimaryKey @ColumnInfo(name = "id") val id: Int,
@@ -29,7 +32,7 @@ data class PixabayImage(
     @ColumnInfo(name = "user_id") val userId: Int,
     @ColumnInfo(name = "user") val user: String,
     @ColumnInfo(name = "user_image_url") val userImageUrl: String
-) {
+) : Parcelable {
     object DiffCallback : DiffUtil.ItemCallback<PixabayImage>() {
         override fun areItemsTheSame(oldItem: PixabayImage, newItem: PixabayImage): Boolean {
             return oldItem.id == newItem.id

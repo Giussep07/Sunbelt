@@ -12,6 +12,8 @@ import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.giussepr.sunbelt.R
 import com.giussepr.sunbelt.databinding.HomeFragmentBinding
@@ -66,7 +68,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        adapter = PixabayImageAdapter()
+        adapter = PixabayImageAdapter(clickListener = { pixabayImage, imageview ->
+            val extraInfo = FragmentNavigatorExtras(
+                imageview to pixabayImage.webFormatUrl
+            )
+
+            this.findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToImageDetailFragment(pixabayImage),
+                extraInfo
+            )
+        })
 
         binding.recyclerViewPixabayImages.adapter = adapter.withLoadStateFooter(
             footer = PixabayLoadStateAdapter()
@@ -90,6 +101,16 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+
+        postponeEnterTransition()
+
+        binding.recyclerViewPixabayImages.viewTreeObserver.addOnPreDrawListener {
+
+            startPostponedEnterTransition()
+
+            true
+        }
+
     }
 
 }

@@ -5,11 +5,19 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/textOnPrimary</item>
     </style>
 
     <style name="ImageViewPixabayStats">
         <item name="android:layout_width">16dp</item>
         <item name="android:layout_height">16dp</item>
+        <item name="android:tint">@color/gray</item>
+    </style>
+
+    <style name="ImageViewPixabayStats.Big">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:tint">@color/gray</item>
     </style>
 
 </resources>

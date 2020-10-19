@@ -20,5 +20,18 @@
         android:id="@+id/homeFragment"
         android:name="com.giussepr.sunbelt.ui.home.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_imageDetailFragment"
+            app:destination="@id/imageDetailFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/imageDetailFragment"
+        android:name="com.giussepr.sunbelt.ui.imageDetail.ImageDetailFragment"
+        android:label="Image Detail"
+        tools:layout="@layout/image_detail_fragment">
+        <argument
+            android:name="pixabayImage"
+            app:argType="com.giussepr.sunbelt.db.entity.PixabayImage" />
+    </fragment>
 </navigation>
